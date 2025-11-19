@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>Inside vs Outside Classroom – Comparativo por programa</h2>
+
+  <p class="text-muted">
+    Versión básica del reporte: se listan las aulas del programa con el número de estudiantes matriculados.
+    Luego puedes ampliar este reporte para incluir métricas de desempeño Inside / Outside Classroom.
+  </p>
+
+  <table class="table table-striped mt-3">
+    <thead>
+      <tr>
+        <th>ID Aula</th>
+        <th>Nombre aula</th>
+        <th>Institución</th>
+        <th>Total estudiantes</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if comparativos and comparativos|length > 0 %}
+        {% for c in comparativos %}
+          <tr>
+            <td>{{ c.id_aula }}</td>
+            <td>{{ c.nombre_aula }}</td>
+            <td>{{ c.nombre_institucion or '-' }}</td>
+            <td>{{ c.total_estudiantes }}</td>
+          </tr>
+        {% endfor %}
+      {% else %}
+        <tr>
+          <td colspan="4" class="text-center">
+            No se encontraron aulas registradas o no hay estudiantes matriculados.
+          </td>
+        </tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

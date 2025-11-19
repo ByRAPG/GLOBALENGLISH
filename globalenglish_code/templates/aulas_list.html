@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+      <h2 class="mb-1">Aulas de Institución</h2>
+      <p class="text-muted mb-0">
+        Aquí gestionas las aulas: <strong>código, sede, grado, programa y capacidad</strong>.
+      </p>
+    </div>
+
+    <a href="{{ url_for('aulas_new', id_institucion=id_institucion) }}"
+       class="btn btn-primary shadow-sm">
+      <i class="bi bi-plus-lg"></i> Nueva aula
+    </a>
+  </div>
+
+  {% if not aulas %}
+    <div class="alert alert-warning">
+      Aún no hay aulas registradas para esta institución.
+    </div>
+  {% else %}
+    <div class="card shadow-sm">
+      <div class="card-body p-0">
+        <table class="table table-hover mb-0 align-middle">
+          <thead class="table-dark">
+            <tr>
+              <th>Código</th>
+              <th>Institución</th>
+              <th>Sede</th>
+              <th>Grado</th>
+              <th>Programa</th>
+              <th>Capacidad</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for aula in aulas %}
+            <tr>
+              <td>{{ aula.codigo_aula }}</td>
+              <td>{{ aula.institucion }}</td>
+              <td>{{ aula.sede }}</td>
+              <td>{{ aula.grado }}</td>
+              <td>{{ aula.programa }}</td>
+              <td>{{ aula.capacidad }}</td>
+
+              <td>
+                {% if aula.estado == 1 %}
+                  <span class="badge bg-success">Activo</span>
+                {% else %}
+                  <span class="badge bg-secondary">Inactivo</span>
+                {% endif %}
+              </td>
+
+              <td>
+                <a href="{{ url_for('deshabilitar_aula',
+                                     id_aula=aula.id_aula,
+                                     id_institucion=id_institucion) }}"
+                   class="btn btn-sm {% if aula.estado == 1 %}btn-warning{% else %}btn-success{% endif %}">
+                  {% if aula.estado == 1 %}
+                    Deshabilitar
+                  {% else %}
+                    Habilitar
+                  {% endif %}
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  {% endif %}
+
+</div>
+{% endblock %}

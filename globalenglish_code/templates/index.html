@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="text-center">
+    <h1>Programa GLOBALENGLISH</h1>
+    <p class="lead">Gestión de instituciones, aulas y estudiantes.</p>
+    <a class="btn btn-primary" href="{{ url_for('instituciones_list') }}">
+      Ver instituciones
+    </a>
+  </div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-4">
+  <h2>Configuración del programa</h2>
+  <p class="text-muted">Solo disponible para el rol <strong>ADMINISTRADOR</strong>.</p>
+
+  <div class="row mt-4 g-3">
+    <div class="col-md-4">
+      <a href="{{ url_for('admin_semanas_list') }}" class="text-decoration-none">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title">Calendario del programa</h5>
+            <p class="card-text">
+              Crear y administrar las semanas del programa (inicio y fin).
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-md-4">
+      <a href="{{ url_for('admin_tiposdoc_list') }}" class="text-decoration-none">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title">Tipos de documento</h5>
+            <p class="card-text">
+              Gestionar CC, TI, PASAPORTE y otros tipos de documento.
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-md-4">
+      <a href="{{ url_for('admin_duraciones_list') }}" class="text-decoration-none">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title">Duración estándar de hora</h5>
+            <p class="card-text">
+              Registrar los equivalentes de hora: 40, 45, 50, 55, 60 minutos.
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

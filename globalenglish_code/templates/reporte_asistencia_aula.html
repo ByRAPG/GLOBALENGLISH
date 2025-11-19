@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>Reporte de asistencia por Aula</h2>
+
+  <form method="get" class="row g-3 mt-3">
+    <div class="col-md-3">
+      <label class="form-label">Institución</label>
+      <input type="text" name="f_institucion" class="form-control" placeholder="Nombre IED">
+    </div>
+    <div class="col-md-3">
+      <label class="form-label">Sede</label>
+      <input type="text" name="f_sede" class="form-control" placeholder="Nombre sede">
+    </div>
+    <div class="col-md-2">
+      <label class="form-label">Aula</label>
+      <input type="text" name="f_aula" class="form-control" placeholder="Nombre aula">
+    </div>
+    <div class="col-md-2">
+      <label class="form-label">Desde semana</label>
+      <input type="number" name="f_semana_ini" class="form-control" min="1">
+    </div>
+    <div class="col-md-2">
+      <label class="form-label">Hasta semana</label>
+      <input type="number" name="f_semana_fin" class="form-control" min="1">
+    </div>
+    <div class="col-12 d-flex justify-content-end mt-2">
+      <button type="submit" class="btn btn-primary me-2">Filtrar</button>
+      <a href="{{ url_for('reporte_asistencia_aula') }}" class="btn btn-secondary">Limpiar</a>
+    </div>
+  </form>
+
+  <hr class="mt-4">
+
+  <h4>Resultados</h4>
+  <p>Por ahora este reporte está creado a nivel de interfaz. Cuando tengamos la tabla de asistencia, aquí se mostrará el detalle por aula y semana.</p>
+
+  <table class="table table-striped mt-3">
+    <thead>
+      <tr>
+        <th>Semana</th>
+        <th>Fecha clase</th>
+        <th>Institución</th>
+        <th>Sede</th>
+        <th>Aula</th>
+        <th>Festivo</th>
+        <th>Dictada</th>
+        <th>Horas dictadas</th>
+        <th>Horas no dictadas</th>
+        <th>Motivo</th>
+        <th>Reposición</th>
+        <th>Tutor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="12" class="text-center">
+          Sin datos de asistencia configurados todavía.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="mb-3">Crear nuevo período académico</h2>
+
+  <p class="text-muted">
+    Define el nombre del período (por ejemplo, "Período 1 - 2025") y sus fechas de inicio y fin.
+    El año se calculará automáticamente a partir de la fecha de inicio.
+  </p>
+
+  <form method="post" class="col-md-6">
+
+    <div class="mb-3">
+      <label for="nombre_periodo" class="form-label">Nombre del período</label>
+      <input type="text" class="form-control" id="nombre_periodo" name="nombre_periodo"
+             placeholder="Período 1 - 2025" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="fecha_inicio" class="form-label">Fecha de inicio</label>
+      <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="fecha_fin" class="form-label">Fecha de fin</label>
+      <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar período</button>
+    <a href="{{ url_for('periodos_list') }}" class="btn btn-secondary ms-2">Cancelar</a>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "base_auth.html" %}
+
+{% block content %}
+<div class="auth-page">
+  <form class="form_container" method="POST" action="{{ url_for('login') }}">
+    <div class="logo_container">
+      <span>GE</span>
+    </div>
+
+    <div class="title_container">
+      <p class="title">Iniciar sesión</p>
+      <span class="subtitle">
+        Accede al panel de GLOBALENGLISH para gestionar instituciones, aulas y estudiantes.
+      </span>
+    </div>
+
+    <br>
+
+    <!-- Correo -->
+    <div class="input_container">
+      <label class="input_label" for="email_field">Correo institucional</label>
+      <!-- (SVG igual que antes) -->
+      <input
+        placeholder="tutor@institucion.edu"
+        title="Correo electrónico"
+        name="email"
+        type="email"
+        class="input_field"
+        id="email_field"
+        required
+      >
+    </div>
+
+    <!-- Contraseña -->
+    <div class="input_container">
+      <label class="input_label" for="password_field">Contraseña</label>
+      <!-- (SVG igual que antes) -->
+      <input
+        placeholder="Tu contraseña"
+        title="Contraseña"
+        name="password"
+        type="password"
+        class="input_field"
+        id="password_field"
+        required
+      >
+    </div>
+
+    <button title="Iniciar sesión" type="submit" class="sign-in_btn">
+      <span>Entrar</span>
+    </button>
+
+    <!-- Si no vas a usar Google/Apple, puedes comentar estos botones -->
+    <!--
+    <div class="separator">
+      <hr class="line">
+      <span>o</span>
+      <hr class="line">
+    </div>
+    <button type="button" class="sign-in_ggl">...</button>
+    -->
+
+    <p class="auth-switch">
+      ¿No puedes entrar? Ponte en contacto con el <strong>administrador del programa</strong>
+      para revisar tu usuario o restablecer tu contraseña.
+    </p>
+
+    <p class="note">Solo el personal autorizado del programa GLOBALENGLISH tiene acceso.</p>
+  </form>
+</div>
+{% endblock %}

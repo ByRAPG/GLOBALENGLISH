@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <h2 class="mb-3">Registro de Notas</h2>
+    <p class="text-muted">Selecciona el aula, periodo y componente para comenzar el registro.</p>
+
+    <form action="#" method="post" class="col-md-6">
+
+        <div class="mb-3">
+            <label for="aula" class="form-label">Aula</label>
+            <select name="aula" id="aula" class="form-select" required>
+                <option value="" disabled selected>Seleccione un aula</option>
+                {% for aula in aulas %}
+                    <option value="{{ aula.id_aula }}">{{ aula.nombre_aula }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="periodo" class="form-label">Periodo académico</label>
+            <select name="periodo" id="periodo" class="form-select" required>
+                <option value="" disabled selected>Seleccione período</option>
+                {% for p in periodos %}
+                    <option value="{{ p.id_periodo }}">{{ p.nombre_periodo }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="componente" class="form-label">Componente de evaluación</label>
+            <select name="componente" id="componente" class="form-select" required>
+                <option value="" disabled selected>Seleccione componente</option>
+                {% for c in componentes %}
+                    <option value="{{ c.id_componente }}">
+                        {{ c.nombre_componente }} ({{ c.programa }})
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button class="btn btn-primary" disabled>Continuar (en construcción)</button>
+    </form>
+
+    <div class="alert alert-info mt-4">
+        Próximamente se habilitarán:
+        <ul>
+            <li>Registro por estudiante</li>
+            <li>Edición de notas</li>
+            <li>Historial de notas por período</li>
+            <li>Generación de boletines</li>
+        </ul>
+    </div>
+
+</div>
+{% endblock %}

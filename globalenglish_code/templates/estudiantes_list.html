@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Estudiantes del programa</h2>
+    <a href="{{ url_for('estudiantes_new') }}" class="btn btn-primary">
+      <i class="bi bi-plus-lg"></i> Nuevo estudiante
+    </a>
+  </div>
+
+  <p>
+    Aquí se listan los estudiantes que participan en GLOBALENGLISH. 
+    Más adelante podrás ver su asistencia, notas y movimiento entre aulas.
+  </p>
+
+  {% if estudiantes %}
+    <table class="table table-striped align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>Documento</th>
+          <th>Nombre completo</th>
+          <th>Grado</th>
+          <th>Correo</th>
+          <th>Teléfono</th>
+          <th>Institución</th>
+          <th>Fecha nac.</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for e in estudiantes %}
+          <tr>
+            <td>{{ e.tipo_doc }} {{ e.numero_documento }}</td>
+            <td>{{ e.nombre_completo }}</td>
+            <td>
+              {% if e.numero_grado %}
+                {{ e.numero_grado }}°
+              {% else %}
+                -
+              {% endif %}
+            </td>
+            <td>{{ e.correo or '-' }}</td>
+            <td>{{ e.telefono or '-' }}</td>
+            <td>{{ e.institucion or '-' }}</td>
+            <td>
+              {% if e.fecha_nacimiento %}
+                {{ e.fecha_nacimiento.strftime('%Y-%m-%d') if e.fecha_nacimiento.__class__.__name__ == 'date' else e.fecha_nacimiento }}
+              {% else %}
+                -
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <div class="alert alert-info">
+      Aún no has registrado estudiantes. Haz clic en <strong>"Nuevo estudiante"</strong> para crear el primero.
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

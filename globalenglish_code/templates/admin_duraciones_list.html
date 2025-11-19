@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-4">
+  <div class="d-flex justify-content-between align-items-center">
+    <h3>Duraciones de hora</h3>
+    <a href="{{ url_for('admin_duraciones_new') }}" class="btn btn-primary">Nueva duración</a>
+  </div>
+
+  <table class="table table-striped mt-3">
+    <thead>
+      <tr>
+        <th>Minutos</th>
+        <th>Descripción</th>
+        <th>Activo</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for d in duraciones %}
+      <tr>
+        <td>{{ d.minutos }}</td>
+        <td>{{ d.descripcion }}</td>
+        <td>{{ 'Sí' if d.activo else 'No' }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

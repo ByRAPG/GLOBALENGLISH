@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>Reposiciones de clase</h2>
+
+  <div class="alert alert-info mt-3">
+    Esta sección está en construcción. Próximamente podrás:
+    <ul>
+      <li>Ver las clases que no se dictaron (por festivo, fuerza mayor, etc.).</li>
+      <li>Seleccionar una clase no dictada para reponerla.</li>
+      <li>Indicar fecha y horario de la reposición.</li>
+      <li>Ver el historial de reposiciones realizadas.</li>
+    </ul>
+  </div>
+
+  <!-- Estructura base del formulario futuro -->
+  <form method="post" class="mt-4">
+    <div class="mb-3">
+      <label class="form-label">Clase a reponer</label>
+      <select name="id_clase_original" class="form-select" disabled>
+        <option value="">(Próximamente se listarán las clases no dictadas)</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Fecha de reposición</label>
+      <input type="date" name="fecha_reposicion" class="form-control" disabled>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Hora de inicio</label>
+      <input type="time" name="hora_inicio" class="form-control" disabled>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Hora de fin</label>
+      <input type="time" name="hora_fin" class="form-control" disabled>
+    </div>
+
+    <button type="submit" class="btn btn-primary" disabled>
+      Guardar reposición (en construcción)
+    </button>
+  </form>
+</div>
+{% endblock %}

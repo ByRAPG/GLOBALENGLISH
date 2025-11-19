@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Tutores del programa</h2>
+    <a href="{{ url_for('tutores_new') }}" class="btn btn-primary">
+      ➕ Nuevo tutor
+    </a>
+  </div>
+
+  <p class="text-muted">
+    Aquí se listan las personas contratadas con perfil <strong>TUTOR</strong>.
+    Más adelante podrás asignarlas a aulas y horarios.
+  </p>
+
+  {% if tutores and tutores|length > 0 %}
+    <table class="table table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>Documento</th>
+          <th>Nombre completo</th>
+          <th>Correo</th>
+          <th>Teléfono</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for t in tutores %}
+        <tr>
+          <td>{{ t.tipo_documento }} {{ t.numero_documento }}</td>
+          <td>{{ t.apellidos }}, {{ t.nombres }}</td>
+          <td>{{ t.email }}</td>
+          <td>{{ t.telefono }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <div class="alert alert-warning">
+      Aún no has registrado tutores.  
+      Haz clic en <strong>"Nuevo tutor"</strong> para crear el primero.
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

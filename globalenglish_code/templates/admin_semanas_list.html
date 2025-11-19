@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Calendario del programa – Semanas</h2>
+    <a href="{{ url_for('admin_semanas_new') }}" class="btn btn-primary">
+      ➕ Nueva semana
+    </a>
+  </div>
+
+  <p class="text-muted">
+    Aquí se define el calendario general del programa GLOBALENGLISH:
+    número de semana, fecha de inicio y fecha de fin. Esto se usará luego
+    para reportes por semana.
+  </p>
+
+  {% if semanas and semanas|length > 0 %}
+    <table class="table table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th># Semana</th>
+          <th>Fecha inicio</th>
+          <th>Fecha fin</th>
+          <th>Estado</th>
+          <th>Observaciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for s in semanas %}
+        <tr>
+          <td>{{ s.numero_semana }}</td>
+          <td>{{ s.fecha_inicio }}</td>
+          <td>{{ s.fecha_fin }}</td>
+          <td>
+            {% if s.activo %}
+              <span class="badge bg-success">Activa</span>
+            {% else %}
+              <span class="badge bg-secondary">Inactiva</span>
+            {% endif %}
+          </td>
+          <td>{{ s.observaciones or '-' }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <div class="alert alert-warning">
+      Aún no has registrado semanas en el calendario del programa.
+      Haz clic en <strong>"Nueva semana"</strong> para empezar.
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

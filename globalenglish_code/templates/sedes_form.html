@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="mb-3">
+    {{ 'Editar sede' if edit_mode else 'Registrar nueva sede' }}
+  </h2>
+
+  <p class="text-muted">
+    Crea o actualiza una sede asociada a una Institución Educativa (IED).
+    Recuerda que la dirección puede ser diferente a la sede principal.
+  </p>
+
+  <form method="post" class="col-md-6">
+
+    <!-- Institución -->
+    <div class="mb-3">
+      <label for="id_institucion" class="form-label">Institución (IED)</label>
+      <select name="id_institucion" id="id_institucion" class="form-select" required>
+        <option value="">-- Selecciona una institución --</option>
+        {% for inst in instituciones %}
+          <option value="{{ inst.id_institucion }}"
+            {% if sede is defined and sede.id_institucion == inst.id_institucion %}selected{% endif %}>
+            {{ inst.nombre }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <!-- Nombre de la sede -->
+    <div class="mb-3">
+      <label for="nombre_sede" class="form-label">Nombre de la sede</label>
+      <input
+        type="text"
+        class="form-control"
+        id="nombre_sede"
+        name="nombre_sede"
+        placeholder="Ej. Sede San José, Sede Norte..."
+        value="{{ sede.nombre_sede if sede is defined else '' }}"
+        required>
+    </div>
+
+    <!-- Dirección -->
+    <div class="mb-3">
+      <label for="direccion" class="form-label">Dirección</label>
+      <input
+        type="text"
+        class="form-control"
+        id="direccion"
+        name="direccion"
+        placeholder="Ej. Calle 45 # 32 - 10"
+        value="{{ sede.direccion if sede is defined else '' }}"
+        required>
+    </div>
+
+    <!-- Principal o alterna -->
+    <div class="mb-3">
+      <label class="form-label d-block">Tipo de sede</label>
+      {% set es_principal_val = sede.es_principal if sede is defined else 1 %}
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="es_principal" id="sede_principal" value="1"
+               {% if es_principal_val == 1 %}checked{% endif %}>
+        <label class="form-check-label" for="sede_principal">Principal</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="es_principal" id="sede_alterna" value="0"
+               {% if es_principal_val == 0 %}checked{% endif %}>
+        <label class="form-check-label" for="sede_alterna">Alterna</label>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+      {{ 'Guardar cambios' if edit_mode else 'Guardar sede' }}
+    </button>
+    <a href="{{ url_for('sedes_list') }}" class="btn btn-secondary ms-2">Cancelar</a>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Nueva Institución</h2>
+  <form method="post">
+    <div class="mb-3">
+      <label class="form-label">Nombre *</label>
+      <input type="text" name="nombre" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Código DANE *</label>
+      <input type="text" name="codigo_dane" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Tipo de jornada *</label>
+      <select name="tipo_jornada" class="form-select" required>
+        <option value="">--Seleccione--</option>
+        <option value="UNICA_MANANA">Única mañana</option>
+        <option value="UNICA_TARDE">Única tarde</option>
+        <option value="MIXTA">Mixta</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Teléfono</label>
+      <input type="text" name="telefono" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input type="email" name="email" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a href="{{ url_for('instituciones_list') }}" class="btn btn-secondary">Cancelar</a>
+  </form>
+{% endblock %}

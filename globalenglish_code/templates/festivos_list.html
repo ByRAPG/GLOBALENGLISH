@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>Gestión de festivos</h2>
+
+  <div class="alert alert-info mt-3">
+    Esta sección está en construcción. Aquí podrás registrar los días festivos
+    para que el sistema identifique automáticamente cuándo una clase no se dicta
+    por festivo.
+  </div>
+
+  {% if festivos and festivos|length > 0 %}
+    <table class="table table-striped mt-3">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for f in festivos %}
+          <tr>
+            <td>{{ f.fecha }}</td>
+            <td>{{ f.descripcion }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="mt-3">Todavía no hay festivos registrados.</p>
+  {% endif %}
+
+  <!-- Futuro formulario para agregar festivos -->
+  <hr>
+  <h4 class="mt-4">Agregar festivo (en construcción)</h4>
+  <form method="post">
+    <div class="mb-3">
+      <label class="form-label">Fecha</label>
+      <input type="date" name="fecha" class="form-control" disabled>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Descripción</label>
+      <input type="text" name="descripcion" class="form-control" disabled
+             placeholder="Ej. Día de la Independencia">
+    </div>
+    <button type="submit" class="btn btn-primary" disabled>
+      Guardar festivo (en construcción)
+    </button>
+  </form>
+</div>
+{% endblock %}

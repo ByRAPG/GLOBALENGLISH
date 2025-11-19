@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Períodos académicos</h2>
+    <a href="{{ url_for('periodos_new') }}" class="btn btn-primary">
+      ➕ Nuevo período
+    </a>
+  </div>
+
+  <p class="text-muted">
+    Aquí gestionas los períodos académicos (1, 2, 3...) con sus fechas de inicio y fin.
+    El sistema marca como <strong>Activo</strong> el período que se está cursando.
+  </p>
+
+  {% if periodos and periodos|length > 0 %}
+    <table class="table table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>Nombre</th>
+          <th>Fecha inicio</th>
+          <th>Fecha fin</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in periodos %}
+        <tr>
+          <td>{{ p.nombre_periodo }}</td>
+          <td>{{ p.fecha_inicio }}</td>
+          <td>{{ p.fecha_fin }}</td>
+          <td>
+            {% if p.activo %}
+              <span class="badge bg-success">Activo</span>
+            {% else %}
+              <span class="badge bg-secondary">Inactivo</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <div class="alert alert-warning">
+      Aún no has definido períodos académicos.
+      Haz clic en <strong>"Nuevo período"</strong> para crear el primero.
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

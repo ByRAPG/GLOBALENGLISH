@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Registrar nuevo estudiante</h2>
+
+  <form method="POST" action="{{ url_for('estudiantes_new') }}">
+
+    <!-- Tipo de documento -->
+    <div class="mb-3">
+      <label class="form-label">Tipo de documento</label>
+      <select name="id_tipo_documento" class="form-select" required>
+        <option value="">-- Selecciona --</option>
+        {% for td in tipos_doc %}
+          <option value="{{ td.id_tipo_documento }}">{{ td.nombre }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <!-- Número de documento -->
+    <div class="mb-3">
+      <label class="form-label">Número de documento</label>
+      <input type="text" name="numero_documento" class="form-control" required>
+    </div>
+
+    <!-- Nombres -->
+    <div class="mb-3">
+      <label class="form-label">Nombres</label>
+      <input type="text" name="nombres" class="form-control" required>
+    </div>
+
+    <!-- Apellidos -->
+    <div class="mb-3">
+      <label class="form-label">Apellidos</label>
+      <input type="text" name="apellidos" class="form-control" required>
+    </div>
+
+    <!-- Correo -->
+    <div class="mb-3">
+      <label class="form-label">Correo institucional</label>
+      <input type="email" name="correo" class="form-control"
+             placeholder="estudiante@globalenglish.edu">
+    </div>
+
+    <!-- Teléfono -->
+    <div class="mb-3">
+      <label class="form-label">Teléfono</label>
+      <input type="text" name="telefono" class="form-control">
+    </div>
+
+    <!-- Fecha de nacimiento -->
+    <div class="mb-3">
+      <label class="form-label">Fecha de nacimiento</label>
+      <input type="date" name="fecha_nacimiento" class="form-control">
+    </div>
+
+    <!-- Institución -->
+    <div class="mb-3">
+      <label class="form-label">Institución (IED)</label>
+      <select name="id_institucion" class="form-select" required>
+        <option value="">-- Selecciona --</option>
+        {% for inst in instituciones %}
+          <option value="{{ inst.id_institucion }}">{{ inst.nombre }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <!-- Grado -->
+    <div class="mb-3">
+      <label class="form-label">Grado</label>
+      <select name="id_grado" class="form-select" required>
+        <option value="">-- Selecciona --</option>
+        {% for g in grados %}
+          <option value="{{ g.id_grado }}">{{ g.numero_grado }}°</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar estudiante</button>
+    <a href="{{ url_for('estudiantes_list') }}" class="btn btn-secondary">Cancelar</a>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>Tomar asistencia</h2>
+
+  <div class="alert alert-info mt-3">
+    Esta sección está en construcción. Próximamente podrás:
+    <ul>
+      <li>Seleccionar el aula y la fecha de clase.</li>
+      <li>Ver el horario esperado (día, hora inicio y fin).</li>
+      <li>Marcar si la clase se dictó o no.</li>
+      <li>Registrar asistencia de cada estudiante (presente/ausente/justificación).</li>
+      <li>Registrar reposiciones de clase.</li>
+    </ul>
+  </div>
+
+  <!-- Ejemplo de estructura de formulario futuro -->
+  <form method="post" class="mt-4">
+    <div class="mb-3">
+      <label class="form-label">Aula</label>
+      <select name="id_aula" class="form-select" disabled>
+        <option value="">(Próximamente se cargarán tus aulas)</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Fecha de la clase</label>
+      <input type="date" name="fecha_clase" class="form-control" disabled>
+    </div>
+
+    <button type="submit" class="btn btn-primary" disabled>
+      Guardar asistencia (en construcción)
+    </button>
+  </form>
+</div>
+{% endblock %}

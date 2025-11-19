@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>Reporte de asistencia por Estudiante</h2>
+
+  <form method="get" class="row g-3 mt-3">
+    <div class="col-md-3">
+      <label class="form-label">Documento estudiante</label>
+      <input type="text" name="f_documento" class="form-control" placeholder="CC / TI / Pasaporte">
+    </div>
+    <div class="col-md-3">
+      <label class="form-label">Nombre estudiante</label>
+      <input type="text" name="f_nombre" class="form-control" placeholder="Nombre o apellido">
+    </div>
+    <div class="col-md-3">
+      <label class="form-label">Institución</label>
+      <input type="text" name="f_institucion" class="form-control" placeholder="Nombre IED">
+    </div>
+    <div class="col-md-3">
+      <label class="form-label">Grado</label>
+      <input type="text" name="f_grado" class="form-control" placeholder="4, 5, 9, 10">
+    </div>
+    <div class="col-md-3">
+      <label class="form-label">Programa</label>
+      <select name="f_programa" class="form-select">
+        <option value="">Todos</option>
+        <option value="INSIDECLASSROOM">INSIDECLASSROOM</option>
+        <option value="OUTSIDECLASSROOM">OUTSIDECLASSROOM</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <label class="form-label">Desde semana</label>
+      <input type="number" name="f_semana_ini" class="form-control" min="1">
+    </div>
+    <div class="col-md-3">
+      <label class="form-label">Hasta semana</label>
+      <input type="number" name="f_semana_fin" class="form-control" min="1">
+    </div>
+    <div class="col-12 d-flex justify-content-end mt-2">
+      <button type="submit" class="btn btn-primary me-2">Filtrar</button>
+      <a href="{{ url_for('reporte_asistencia_estudiante') }}" class="btn btn-secondary">Limpiar</a>
+    </div>
+  </form>
+
+  <hr class="mt-4">
+
+  <h4>Resultados</h4>
+
+  <table class="table table-striped mt-3">
+    <thead>
+      <tr>
+        <th>Semana</th>
+        <th>Fecha clase</th>
+        <th>Institución</th>
+        <th>Sede</th>
+        <th>Aula</th>
+        <th>Programa</th>
+        <th>Asistencia</th>
+        <th>Motivo inasistencia</th>
+        <th>Reposición</th>
+        <th>Tutor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="10" class="text-center">
+          Sin datos de asistencia configurados todavía.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endblock %}

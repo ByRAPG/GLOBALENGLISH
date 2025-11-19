@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>Boletín de notas</h2>
+
+  <form method="get" class="row g-3 mt-3">
+    <div class="col-md-3">
+      <label class="form-label">Documento del estudiante</label>
+      <input type="text" name="f_documento" class="form-control"
+             placeholder="CC / TI / Pasaporte"
+             value="{{ request.args.get('f_documento', '') }}">
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label">Período (ID)</label>
+      <input type="text" name="f_periodo" class="form-control"
+             placeholder="Ej: 1, 2, 3..."
+             value="{{ request.args.get('f_periodo', '') }}">
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label">Institución</label>
+      <input type="text" name="f_institucion" class="form-control"
+             placeholder="Nombre IED"
+             value="{{ request.args.get('f_institucion', '') }}">
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label">Grado</label>
+      <input type="text" name="f_grado" class="form-control"
+             placeholder="4, 5, 9, 10..."
+             value="{{ request.args.get('f_grado', '') }}">
+    </div>
+
+    <div class="col-12 d-flex justify-content-end mt-2">
+      <button type="submit" class="btn btn-primary me-2">Filtrar</button>
+      <a href="{{ url_for('reporte_boletin') }}" class="btn btn-secondary">Limpiar</a>
+    </div>
+  </form>
+
+  <hr class="mt-4">
+
+  <h4>Resultados</h4>
+
+  <table class="table table-striped mt-3">
+    <thead>
+      <tr>
+        <th>Documento</th>
+        <th>Estudiante</th>
+        <th>Institución</th>
+        <th>Aula</th>
+        <th>Grado</th>
+        <th>Período</th>
+        <th>Asignatura</th>
+        <th>Nota final</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if boletines and boletines|length > 0 %}
+        {% for b in boletines %}
+          <tr>
+            <td>{{ b.numero_documento }}</td>
+            <td>{{ b.estudiante }}</td>
+            <td>{{ b.nombre_institucion }}</td>
+            <td>{{ b.nombre_aula }}</td>
+            <td>{{ b.grado }}</td>
+            <td>{{ b.nombre_periodo }}</td>
+            <td>{{ b.nombre_asignatura }}</td>
+            <td>{{ "%.2f"|format(b.nota_final) if b.nota_final is not none else "-" }}</td>
+          </tr>
+        {% endfor %}
+      {% else %}
+        <tr>
+          <td colspan="8" class="text-center">
+            Sin notas registradas para los filtros seleccionados.
+          </td>
+        </tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="mb-3">Crear componente de nota</h2>
+
+  <p class="text-muted">
+    Define el componente (por ejemplo: Listening, Speaking, Reading, Writing) y
+    a qué programa pertenece, con su porcentaje.
+  </p>
+
+  <form method="post" class="col-md-6">
+
+    <div class="mb-3">
+      <label for="nombre_componente" class="form-label">Nombre del componente</label>
+      <input type="text" class="form-control" id="nombre_componente" name="nombre_componente"
+             placeholder="Listening / Speaking / Reading / Writing" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="id_tipo_programa" class="form-label">Programa</label>
+      <select class="form-select" id="id_tipo_programa" name="id_tipo_programa" required>
+        <option value="" disabled selected>Selecciona un programa</option>
+        {% for p in programas %}
+          <option value="{{ p.id_tipo_programa }}">{{ p.nombre }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="porcentaje" class="form-label">Porcentaje (%)</label>
+      <input type="number" class="form-control" id="porcentaje" name="porcentaje"
+             min="0" max="100" step="0.01" placeholder="25" required>
+      <div class="form-text">
+        La suma de todos los componentes de un programa debería dar 100%.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar componente</button>
+    <a href="{{ url_for('componentes_list') }}" class="btn btn-secondary ms-2">Cancelar</a>
+  </form>
+</div>
+{% endblock %}

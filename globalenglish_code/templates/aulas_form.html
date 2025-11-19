@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+  <div class="card shadow-sm">
+
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+      <h5 class="mb-0">
+        Nueva Aula – {{ nombre_institucion }}
+      </h5>
+      <a href="{{ url_for('aulas_institucion_list', id_institucion=id_institucion) }}"
+         class="btn btn-outline-light btn-sm">
+        Volver
+      </a>
+    </div>
+
+    <div class="card-body">
+      <p class="text-muted">
+        Registra una nueva aula indicando la <strong>sede</strong>, <strong>grado</strong>,
+        <strong>código de aula</strong> y <strong>capacidad</strong>.
+        El programa (INSIDECLASSROOM / OUTSIDECLASSROOM) se asignará automáticamente según el grado.
+      </p>
+
+      <form method="post" class="row g-3">
+
+        <!-- Sede -->
+        <div class="col-md-6">
+          <label for="id_sede" class="form-label">Sede *</label>
+          <select class="form-select" id="id_sede" name="id_sede" required>
+            <option value="" selected disabled>--Seleccione--</option>
+            {% for sede in sedes %}
+              <option value="{{ sede.id_sede }}">{{ sede.nombre_sede }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <!-- Grado -->
+        <div class="col-md-6">
+          <label for="id_grado" class="form-label">Grado *</label>
+          <select class="form-select" id="id_grado" name="id_grado" required>
+            <option value="" selected disabled>--Seleccione--</option>
+            {% for g in grados %}
+              <option value="{{ g.id_grado }}">{{ g.nombre_grado }}</option>
+            {% endfor %}
+          </select>
+          <div class="form-text">
+            Para grados 4º y 5º el programa será <strong>INSIDECLASSROOM</strong>, 
+            y para 9º y 10º <strong>OUTSIDECLASSROOM</strong>.
+          </div>
+        </div>
+
+        <!-- Código aula -->
+        <div class="col-md-6">
+          <label for="codigo_aula" class="form-label">Código aula *</label>
+          <input type="text"
+                 class="form-control"
+                 id="codigo_aula"
+                 name="codigo_aula"
+                 required
+                 placeholder="Ej: 401">
+        </div>
+
+        <!-- Capacidad -->
+        <div class="col-md-6">
+          <label for="capacidad" class="form-label">Capacidad</label>
+          <input type="number"
+                 class="form-control"
+                 id="capacidad"
+                 name="capacidad"
+                 min="1"
+                 placeholder="Ej: 25">
+        </div>
+
+        <!-- Botones -->
+        <div class="col-12 d-flex justify-content-end mt-3">
+          <a href="{{ url_for('aulas_institucion_list', id_institucion=id_institucion) }}"
+             class="btn btn-secondary me-2">
+            Cancelar
+          </a>
+          <button type="submit" class="btn btn-primary">
+            Guardar
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

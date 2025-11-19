@@ -1,0 +1,239 @@
+/* ==== Fondo general de la vista de autenticación ==== */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top left, #115DFC22, transparent 60%),
+              radial-gradient(circle at bottom right, #00b89422, transparent 60%),
+              #f3f4f6;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Animación de entrada */
+.form_container {
+  animation: fadeUp 0.6s ease-out;
+}
+
+/* From Uiverse.io by zanina-yassine (adaptado) */
+.form_container {
+  width: min(380px, 100%);
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 40px 32px 24px 32px;
+  background-color: #ffffff;
+  box-shadow: 0px 106px 42px rgba(0, 0, 0, 0.01),
+    0px 59px 36px rgba(0, 0, 0, 0.05), 0px 26px 26px rgba(0, 0, 0, 0.09),
+    0px 7px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  font-family: "Inter", sans-serif;
+}
+
+/* Logo / ícono superior */
+.logo_container {
+  box-sizing: border-box;
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(180deg, rgba(248, 248, 248, 0) 50%, #F8F8F888 100%);
+  border: 1px solid #F7F7F8;
+  filter: drop-shadow(0px 0.5px 0.5px #EFEFEF) 
+          drop-shadow(0px 1px 0.5px rgba(239, 239, 239, 0.5));
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Puedes poner iniciales o un ícono dentro */
+.logo_container span {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #115DFC;
+}
+
+.title_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #212121;
+}
+
+.subtitle {
+  font-size: 0.8rem;
+  max-width: 90%;
+  text-align: center;
+  line-height: 1.2rem;
+  color: #8B8E98;
+}
+
+.input_container {
+  width: 100%;
+  height: fit-content;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.icon {
+  width: 20px;
+  position: absolute;
+  z-index: 99;
+  left: 12px;
+  bottom: 9px;
+}
+
+.input_label {
+  font-size: 0.75rem;
+  color: #8B8E98;
+  font-weight: 600;
+}
+
+.input_field {
+  width: 100%;
+  height: 40px;
+  padding: 0 10px 0 40px;
+  border-radius: 9px;
+  outline: none;
+  border: 1px solid #e5e5e5;
+  filter: drop-shadow(0px 1px 0px #efefef)
+    drop-shadow(0px 1px 0.5px rgba(239, 239, 239, 0.5));
+  transition: all 0.25s cubic-bezier(0.15, 0.83, 0.66, 1);
+  font-size: 0.85rem;
+}
+
+.input_field:focus {
+  border: 1px solid transparent;
+  box-shadow: 0px 0px 0px 2px #115DFC;
+  background-color: transparent;
+}
+
+/* Botones principales */
+.sign-in_btn,
+.sign-up_btn {
+  width: 100%;
+  height: 40px;
+  border: 0;
+  background: #115DFC;
+  border-radius: 9px;
+  outline: none;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+}
+
+.sign-in_btn:hover,
+.sign-up_btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(17, 93, 252, 0.35);
+  background: #0b47c7;
+}
+
+/* Botones sociales */
+.sign-in_ggl,
+.sign-in_apl {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 9px;
+  outline: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.sign-in_ggl {
+  background: #ffffff;
+  color: #242424;
+  border: 1px solid #e5e5e5;
+  filter: drop-shadow(0px 1px 0px #efefef)
+    drop-shadow(0px 1px 0.5px rgba(239, 239, 239, 0.5));
+}
+
+.sign-in_apl {
+  background: #212121;
+  color: #ffffff;
+  border: 1px solid #e5e5e5;
+  filter: drop-shadow(0px 1px 0px #efefef)
+    drop-shadow(0px 1px 0.5px rgba(239, 239, 239, 0.5));
+}
+
+.sign-in_ggl:hover,
+.sign-in_apl:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+}
+
+.separator {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  color: #8B8E98;
+  font-size: 0.75rem;
+}
+
+.separator .line {
+  display: block;
+  width: 100%;
+  height: 1px;
+  border: 0;
+  background-color: #e8e8e8;
+}
+
+.note {
+  font-size: 0.7rem;
+  color: #8B8E98;
+  text-decoration: underline;
+}
+
+/* Link para cambiar entre login y register */
+.auth-switch {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.auth-switch a {
+  color: #115DFC;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-switch a:hover {
+  text-decoration: underline;
+}
+
+/* Animación */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

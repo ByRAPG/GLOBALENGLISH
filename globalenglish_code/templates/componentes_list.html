@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Componentes de nota</h2>
+    <a href="{{ url_for('componentes_new') }}" class="btn btn-primary">
+      ➕ Nuevo componente
+    </a>
+  </div>
+
+  <p class="text-muted">
+    Aquí defines los componentes de evaluación para cada programa
+    (por ejemplo: Listening, Speaking, Reading, Writing) y su porcentaje.
+  </p>
+
+  {% if componentes and componentes|length > 0 %}
+    <table class="table table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>Componente</th>
+          <th>Programa</th>
+          <th>Porcentaje</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for c in componentes %}
+        <tr>
+          <td>{{ c.nombre_componente }}</td>
+          <td>{{ c.programa }}</td>
+          <td>{{ c.porcentaje }}%</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <div class="alert alert-warning">
+      Aún no has definido componentes de nota.
+      Haz clic en <strong>"Nuevo componente"</strong> para agregar los primeros.
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-4">
+  <h3>Nueva duración estándar de hora</h3>
+  <form method="post" class="mt-3 col-md-6">
+    <div class="mb-3">
+      <label class="form-label">Minutos</label>
+      <input type="number" name="minutos" class="form-control" required min="1" placeholder="Ej. 40, 45, 50...">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Descripción (opcional)</label>
+      <input type="text" name="descripcion" class="form-control" placeholder="Ej. 1 hora académica">
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a href="{{ url_for('admin_duraciones_list') }}" class="btn btn-secondary">Cancelar</a>
+  </form>
+</div>
+{% endblock %}

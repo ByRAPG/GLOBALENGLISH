@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="mb-3">Registrar nuevo tutor</h2>
+
+  <p class="text-muted">
+    Registra los datos básicos de la persona que desempeñará el rol de TUTOR en el programa.
+  </p>
+
+  <form method="post" class="col-md-6">
+
+    <!-- Tipo de documento -->
+    <div class="mb-3">
+      <label for="id_tipo_documento" class="form-label">Tipo de documento</label>
+      <select class="form-select" id="id_tipo_documento" name="id_tipo_documento" required>
+        <option value="">-- Selecciona --</option>
+        {% for td in tipos_doc %}
+          <option value="{{ td.id_tipo_documento }}">{{ td.nombre }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <!-- Número de documento -->
+    <div class="mb-3">
+      <label for="numero_documento" class="form-label">Número de documento</label>
+      <input type="text" class="form-control" id="numero_documento"
+             name="numero_documento" required>
+    </div>
+
+    <!-- Nombres -->
+    <div class="mb-3">
+      <label for="nombres" class="form-label">Nombres</label>
+      <input type="text" class="form-control" id="nombres" name="nombres" required>
+    </div>
+
+    <!-- Apellidos -->
+    <div class="mb-3">
+      <label for="apellidos" class="form-label">Apellidos</label>
+      <input type="text" class="form-control" id="apellidos" name="apellidos" required>
+    </div>
+
+    <!-- Email -->
+    <div class="mb-3">
+      <label for="email" class="form-label">Correo institucional</label>
+      <input type="email" class="form-control" id="email" name="email"
+             placeholder="tutor@institucion.edu" required>
+    </div>
+
+    <!-- Teléfono -->
+    <div class="mb-3">
+      <label for="telefono" class="form-label">Teléfono</label>
+      <input type="text" class="form-control" id="telefono" name="telefono">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar tutor</button>
+    <a href="{{ url_for('tutores_list') }}" class="btn btn-secondary ms-2">Cancelar</a>
+  </form>
+</div>
+{% endblock %}
